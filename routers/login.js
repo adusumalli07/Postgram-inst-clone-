@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
   res.status(200).json({ StatusCode: "200", message: "Token generated successfully", payload:{token} });
   } catch (error) {
 
-  res.status(500).json({ StatusCode: "500",error: 'Server error' });
+  res.status(500).json({ StatusCode: "500",error: 'Server error' })
   }
 });
 
