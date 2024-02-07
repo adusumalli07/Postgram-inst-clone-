@@ -10,12 +10,9 @@ module.exports = function verifyToken(req, res, next){
 
         req.token = authToken;
         const tokenDetails = jwt.verify(authToken,process.env.JWT_KEY);
-        
-        req.userId=tokenDetails.userId
-
+        req.userId=tokenDetails.userId;
         next();
     } else {
-        
         res.sendStatus(403).json({ StatusCode: "403", message: "Forbidden"});
     }
 }

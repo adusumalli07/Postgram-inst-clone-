@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
     username: {
          type: String,
          required: true,
+         unique: true,
          minlength: 3,
          maxlength: 15
     },
@@ -19,7 +20,18 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: true,
         minlength: 5,
-        maxlength: 50
+        maxlength: 50,
+        trim: true
+    },
+    resetPasswordOtp: {
+      type: String
+    },
+    resetPasswordExpires: {
+      type: Date
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false
     },
     tokens: [{
       token: {
@@ -32,7 +44,8 @@ const userSchema = new mongoose.Schema({
 
   userSchema.methods.generateAuthToken = async function () {
     const user = this;
-    const token = await jwt.sign({ _id: this._id.toString() }, process.env.JWT_KEY, { expiresIn: '1h' });
+    const token = await jwt.sign({ _id: this._id.toString(),isAdmin:this.isAdmin }, process.env.JWT_KEY, { expiresIn: '1h' });
+   
     user.tokens = user.tokens.concat({ token });
     await user.save();
     return token;
