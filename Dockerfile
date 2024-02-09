@@ -1,7 +1,7 @@
 
 FROM node:18
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY package*.json ./
 
@@ -11,4 +11,4 @@ COPY . .
 
 EXPOSE 2020
 
-CMD ["node", "start"]
+CMD ["npm", "start"]

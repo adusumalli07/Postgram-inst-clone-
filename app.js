@@ -7,7 +7,7 @@ const loginRouter = require('./routers/login');
 const logoutRouter = require('./routers/logout');
 const postRouter = require('./routers/post');
 
-mongoose.connect("mongodb+srv://users:gKq4iNykZcgkhSGj@cluster0.plgsuop.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://users:5uS0ghdaAz74Wzlk@cluster0.plgsuop.mongodb.net/?retryWrites=true&w=majority")
 .then( () => console.log("DB is Connected"))
 .catch( err => console.log(err));
 
